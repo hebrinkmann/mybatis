@@ -1,20 +1,15 @@
 package de.henningBrinkmann.mybatisSample.util;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.slf4j.Logger;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 
-import de.henningBrinkmann.mybatisSample.config.AppConfig;
+import de.henningBrinkmann.mybatisSample.test.WebIntegrationTest;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = AppConfig.class)
-public class LoggerPostProcessorTest {
+public class LoggerPostProcessorTest extends WebIntegrationTest {
 	@InjectLogger
-	private Logger logger;
-	
+	protected Logger logger;
+
 	@Test
 	public void loggerSouldBeInjected() {
 		Assert.notNull(logger, "Logger should not be null.");
