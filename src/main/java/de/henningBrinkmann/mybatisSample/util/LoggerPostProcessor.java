@@ -15,10 +15,18 @@ public class LoggerPostProcessor implements BeanPostProcessor {
 
 	@Override
 	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-		Arrays.stream(bean.getClass().getDeclaredFields()).forEach(field -> {
-			if (Logger.class.isAssignableFrom(field.getType()) && field.getAnnotation(InjectLogger.class) != null) {
-				logger.debug("Injecting logger to {}.", bean.getClass());
-				
+		if (bean.getClass().getPackage().getName().startsWith("de.henningBrinkmann")) {
+			Arrays.stream(bean.getClass().getDeclaredFields()).filter(field -> {
+				if (Logger.class.isAssignableFrom(field.getType())) {
+					if (field.getAnnotation(InjectLogger.class) != null) {
+						return true;
+					}
+				}
+
+				return false;
+			}).forEach(field -> {
+				logger.debug("Injecting logger to {}@{}.", bean.getClass().getName(), bean.hashCode());
+
 				if ((field.getModifiers() & Modifier.STATIC) == 0) {
 					field.setAccessible(true);
 					try {
@@ -27,10 +35,11 @@ public class LoggerPostProcessor implements BeanPostProcessor {
 						logger.error("Failed to inject logger to {}.", bean.getClass().getName());
 					}
 				}
-			}
-		});
-		
+			});
+		}
+
 		return bean;
+
 	}
 
 	@Override
