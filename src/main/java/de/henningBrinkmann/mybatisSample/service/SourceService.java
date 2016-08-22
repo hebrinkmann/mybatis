@@ -1,5 +1,7 @@
 package de.henningBrinkmann.mybatisSample.service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,5 +24,13 @@ public class SourceService {
 		logger.debug("Loaded source with id {}: {}", id, source);
 		
 		return source;
+	}
+	
+	public List<Source> getSources() {
+		List<Source>  sources = sourceMapper.getSources();
+		
+		logger.debug("Found {} sources.", sources.size());
+		
+		return sources;
 	}
 }

@@ -1,5 +1,7 @@
 package de.henningBrinkmann.mybatisSample.service;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
@@ -19,4 +21,10 @@ public class SourceServiceTest extends WebIntegrationTest {
 		Assert.notNull(source);
 	}
 
+	@Test
+	public void getSources() {
+		List<Source> sources = testee.getSources();
+		
+		Assert.notNull(sources);
+	}
 }
