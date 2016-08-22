@@ -15,28 +15,26 @@ public class LoggerPostProcessor implements BeanPostProcessor {
 
 	@Override
 	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-		if (bean.getClass().getPackage().getName().startsWith("de.henningBrinkmann")) {
-			Arrays.stream(bean.getClass().getDeclaredFields()).filter(field -> {
-				if (Logger.class.isAssignableFrom(field.getType())) {
-					if (field.getAnnotation(InjectLogger.class) != null) {
-						return true;
-					}
+		Arrays.stream(bean.getClass().getDeclaredFields()).filter(field -> {
+			if (Logger.class.isAssignableFrom(field.getType())) {
+				if (field.getAnnotation(InjectLogger.class) != null) {
+					return true;
 				}
+			}
 
-				return false;
-			}).forEach(field -> {
-				logger.debug("Injecting logger to {}@{}.", bean.getClass().getName(), bean.hashCode());
+			return false;
+		}).forEach(field -> {
+			logger.debug("Injecting logger to {}@{}.", bean.getClass().getName(), bean.hashCode());
 
-				if ((field.getModifiers() & Modifier.STATIC) == 0) {
-					field.setAccessible(true);
-					try {
-						field.set(bean, LoggerFactory.getLogger(bean.getClass()));
-					} catch (Exception e) {
-						logger.error("Failed to inject logger to {}.", bean.getClass().getName());
-					}
+			if ((field.getModifiers() & Modifier.STATIC) == 0) {
+				field.setAccessible(true);
+				try {
+					field.set(bean, LoggerFactory.getLogger(bean.getClass()));
+				} catch (Exception e) {
+					logger.error("Failed to inject logger to {}.", bean.getClass().getName());
 				}
-			});
-		}
+			}
+		});
 
 		return bean;
 
