@@ -53,6 +53,6 @@ local.properties
 # Maven
 target/
 
-git.propertie
+git.properties
 .data/
 s
