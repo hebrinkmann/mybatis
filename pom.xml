@@ -42,7 +42,14 @@
 			<version>3.0.1</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- Binding for Log4J -->
+
+		<!-- Database -->
+		<dependency>
+			<groupId>org.mariadb.jdbc</groupId>
+			<artifactId>mariadb-java-client</artifactId>
+			<version>1.4.6</version>
+		</dependency>
+
 
 		<!-- Logging -->
 		<dependency>
@@ -137,6 +144,23 @@
 					<generateGitPropertiesFilename>src/main/resources/git.properties</generateGitPropertiesFilename>
 					<failOnNoGitDirectory>true</failOnNoGitDirectory>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>4.0.3</version>
+				<configuration>
+					<url>jdbc:mariadb://172.17.42.1/mybatissample</url>
+					<user>mybatissample</user>
+					<password>59oZ2tPUku2ucLfub7aNu6lqE9bzMbHly2gJI9qar48</password>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>com.h2database</groupId>
+						<artifactId>h2</artifactId>
+						<version>1.4.191</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 	</build>
