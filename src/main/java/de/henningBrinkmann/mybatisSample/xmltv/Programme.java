@@ -10,44 +10,85 @@ public class Programme {
 	@XmlAttribute
 	private String channel;
 	
-	public String getChannel() {
-		return channel;
-	}
+	@XmlAttribute
+	@XmlJavaTypeAdapter(DateAdapter.class)
+	private Date start;
 
-	public Date getStart() {
-		return start;
-	}
+	@XmlAttribute
+	@XmlJavaTypeAdapter(DateAdapter.class)
+	private Date stop;
 
-	public Date getStop() {
-		return stop;
-	}
+	@XmlElement
+	private Title title;
 
-	public Title getTitle() {
-		return title;
-	}
+	@XmlElement
+	private Category category;
+
+	@XmlElement(name="desc")
+	private Description description;
 
 	public Category getCategory() {
 		return category;
 	}
-
+	
+	public String getChannel() {
+		return channel;
+	}
+	
 	public Description getDescription() {
 		return description;
 	}
-
-	@XmlAttribute
-	@XmlJavaTypeAdapter(DateAdapter.class)
-	private Date start;
 	
-	@XmlAttribute
-	@XmlJavaTypeAdapter(DateAdapter.class)
-	private Date stop;
+	Integer getIdcategory() {
+		if (category != null) {
+			return category.getIdcategory();
+		}
+		
+		return null;
+	}
 	
-	@XmlElement
-	private Title title;
+	Integer getIddescription() {
+		if (description != null) {
+			return description.getIddescription();
+		}
+		
+		return null;
+	}
 	
-	@XmlElement
-	private Category category;
+	public Date getStart() {
+		return start;
+	}
 	
-	@XmlElement(name="desc")
-	private Description description;
+	public Date getStop() {
+		return stop;
+	}
+	
+	
+	public Title getTitle() {
+		return title;
+	}
+	
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+	
+	public void setChannel(String channel) {
+		this.channel = channel;
+	}
+	
+	public void setDescription(Description description) {
+		this.description = description;
+	}
+	
+	public void setStart(Date start) {
+		this.start = start;
+	}
+	
+	public void setStop(Date stop) {
+		this.stop = stop;
+	}
+	
+	public void setTitle(Title title) {
+		this.title = title;
+	}
 }
