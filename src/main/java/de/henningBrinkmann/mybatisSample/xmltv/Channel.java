@@ -61,4 +61,19 @@ public class Channel {
 	public void setUrl(String url) {
 		this.url = url;
 	}
+	
+	public String getIconUrl() {
+		if (icon != null) {
+			return icon.getSrc();
+		}
+		return null;
+	}
+	
+	public void setIconUrl(String iconUrl) {
+		if (icon == null) {
+			icon = new Icon();
+		}
+		
+		icon.setSrc(iconUrl);
+	}
 }
