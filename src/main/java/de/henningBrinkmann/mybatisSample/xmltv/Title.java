@@ -9,14 +9,24 @@ public class Title {
 
 	@XmlAttribute
 	private String lang;
+	
+	private Integer idtitle;
+
+	public Integer getIdtitle() {
+		return idtitle;
+	}
 
 	public String getLang() {
 		return lang;
-	}
-
+	}	
+	
 	public String getValue() {
 		return value;
-	}	
+	}
+	
+	public void setIdtitle(Integer idtitle) {
+		this.idtitle = idtitle;
+	}
 	
 	public void setLang(String lang) {
 		this.lang = lang;
