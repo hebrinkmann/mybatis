@@ -19,13 +19,13 @@ public class ChannelServiceTest extends WebIntegrationTest {
 	public void testPersistChannel() {
 		Channel channel = new ChannelBuilder().build();
 		
-		testee.persistChannel(channel);
+		int id = testee.persistChannel(channel);
 		
 		Channel channel2 = testee.findChannelByDisplayname(channel.getDisplayName());
 		
 		Assert.notNull(channel2, "Persisted channel should be found.");
 		
-		logger.info("Inserted channel: {}", channel);
+		logger.info("Inserted channel: {}@{}", channel, id);
 	}
 
 }

@@ -5,6 +5,9 @@
 
 <mapper namespace="de.henningBrinkmann.mybatisSample.mapper.ChannelMapper">
 	<insert id="insertChannel" parameterType="de.henningBrinkmann.mybatisSample.xmltv.Channel">
+		<selectKey keyProperty="idchannel" resultType="int">
+			SELECT LAST_INSERT_ID();
+		</selectKey>
 		INSERT INTO
 		`mybatissample`.`channel`
 		(`displayname`,

@@ -12,8 +12,8 @@ import de.henningBrinkmann.mybatisSample.xmltv.Channel;
 public class ChannelService {
 	@Autowired ChannelMapper channelMapper;
 	
- 	public void persistChannel(Channel channel) {
- 		channelMapper.insertChannel(channel);
+ 	public int persistChannel(Channel channel) {
+ 		return channelMapper.insertChannel(channel);
  	}
  	
  	public Channel findChannel(int id) {
