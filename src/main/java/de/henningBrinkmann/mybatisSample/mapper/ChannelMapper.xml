@@ -5,15 +5,16 @@
 
 <mapper namespace="de.henningBrinkmann.mybatisSample.mapper.ChannelMapper">
 	<insert id="insertChannel" parameterType="de.henningBrinkmann.mybatisSample.xmltv.Channel">
-		INSERT INTO `mybatissample`.`channel`
+		INSERT INTO
+		`mybatissample`.`channel`
 		(`displayname`,
 		`url`,
 		`iconurl`,
 		`id`)
 		VALUES
-		('${displayName}',
-		'${url}',
-		'noicon',
-		'${channelId}');
+		(#{displayName},
+		#{url},
+		#{iconUrl},
+		#{channelId});
 	</insert>
 </mapper>
