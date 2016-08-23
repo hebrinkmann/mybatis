@@ -9,15 +9,25 @@ public class Category {
 	
 	@XmlAttribute
 	private String lang;
+	
+	private Integer idcategory;
+
+	public Integer getIdcategory() {
+		return idcategory;
+	}
 
 	public String getLang() {
 		return lang;
 	}
-
+	
 	public String getValue() {
 		return value;
 	}
 	
+	public void setIdcategory(Integer idcategory) {
+		this.idcategory = idcategory;
+	}
+
 	public void setLang(String lang) {
 		this.lang = lang;
 	}
