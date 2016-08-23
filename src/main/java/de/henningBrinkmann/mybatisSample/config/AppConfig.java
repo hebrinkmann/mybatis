@@ -2,6 +2,7 @@ package de.henningBrinkmann.mybatisSample.config;
 
 import java.io.IOException;
 import java.util.Properties;
+import java.util.UUID;
 
 import javax.sql.DataSource;
 
@@ -11,9 +12,11 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -75,5 +78,11 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 		result.setDataSource(dataSource);
 		
 		return result;
+	}
+	
+	@Bean
+	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+	public Logger logger() {
+		return LoggerFactory.getLogger(UUID.randomUUID().toString());
 	}
 }
