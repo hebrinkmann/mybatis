@@ -7,14 +7,21 @@ public class Description {
 	@XmlValue
 	private String value;
 	
-	public String getValue() {
-		return value;
-	}
+	@XmlAttribute
+	private String lang;
 
 	public String getLang() {
 		return lang;
 	}
 
-	@XmlAttribute
-	private String lang;
+	public String getValue() {
+		return value;
+	}
+	
+	public void setLang(String lang) {
+		this.lang = lang;
+	}
+	public void setValue(String value) {
+		this.value = value;
+	}
 }
