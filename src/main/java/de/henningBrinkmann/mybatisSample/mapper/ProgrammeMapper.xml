@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="de.henningBrinkmann.mybatisSample.mapper.ProgrammeMapper">
+	<resultMap type="de.henningBrinkmann.mybatisSample.xmltv.Programme" id="programme">
+		<association property="channel" javaType="de.henningBrinkmann.mybatisSample.xmltv.Channel" column="idchannel" select="getChannel"/>
+		<association property="title" javaType="de.henningBrinkmann.mybatisSample.xmltv.Title" column="idtitle" select="getTitle"/>
+		<association property="category" javaType="de.henningBrinkmann.mybatisSample.xmltv.Category" column="idcategory" select="getCategory"/>
+		<association property="description" javaType="de.henningBrinkmann.mybatisSample.xmltv.Description" column="iddescription" select="getDescription"/>
+	</resultMap>
+	<insert id="insertChannel" parameterType="de.henningBrinkmann.mybatisSample.xmltv.Programme">
+		INSERT INTO
+		`mybatissample`.`programme`
+		(`start`,
+		`stop`,
+		`idchannel`,
+		`idtitle`,
+		`idcategrory`,
+		`iddescription`)
+		VALUES
+		(#{start},
+		#{stop},
+		#{channel.idchannel},
+		#{title.idtitle},
+		#{idcategory},
+		#{iddescription});
+	</insert>
+	<select id="getProgrammes" resultMap="programme">
+		SELECT
+		`programme`.`idprogramme`,
+		`programme`.`start`,
+		`programme`.`stop`,
+		`programme`.`idchannel`,
+		`programme`.`idtitle`,
+		`programme`.`idcategrory`,
+		`programme`.`iddescription`
+		FROM `mybatissample`.`programme`;
+	</select>
+</mapper>
