@@ -27,6 +27,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import de.henningBrinkmann.mybatisSample.util.SurroundingClassnameLogger;
+
 @Configuration
 @EnableWebMvc
 @EnableTransactionManagement
@@ -83,6 +85,8 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 	public Logger logger() {
-		return LoggerFactory.getLogger(UUID.randomUUID().toString());
+		Logger result = new SurroundingClassnameLogger();
+		
+		return result;
 	}
 }
