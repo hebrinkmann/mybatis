@@ -1,34 +1,35 @@
 CREATE TABLE `channel` (
-  `idchannel` int(11) NOT NULL,
+  `idchannel` int(11) NOT NULL AUTO_INCREMENT,
   `displayname` varchar(100) NOT NULL,
   `url` varchar(1000) NOT NULL,
   `iconurl` varchar(1000) DEFAULT NULL,
+  `id` varchar(100) NOT NULL,
   PRIMARY KEY (`idchannel`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `title` (
-  `idtitle` int(11) NOT NULL,
+  `idtitle` int(11) NOT NULL AUTO_INCREMENT,
   `value` varchar(256) NOT NULL,
   `lang` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idtitle`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `category` (
-  `idcategory` int(11) NOT NULL,
+  `idcategory` int(11) NOT NULL AUTO_INCREMENT,
   `value` varchar(100) NOT NULL,
   `lang` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idcategory`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `description` (
-  `iddescription` int(11) NOT NULL,
+  `iddescription` int(11) NOT NULL AUTO_INCREMENT,
   `value` varchar(1000) NOT NULL,
   `lang` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`iddescription`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `programme` (
-  `idprogramme` int(11) NOT NULL,
+  `idprogramme` int(11) NOT NULL AUTO_INCREMENT,
   `start` datetime NOT NULL,
   `stop` datetime NOT NULL,
   `idchannel` int(11) NOT NULL,
